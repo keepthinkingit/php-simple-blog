@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+<link rel="stylesheet" href="./css/reset.css">
+<link rel="stylesheet" href="./css/index.css">
+<link rel="stylesheet" href="./css/art.css">
+</head>
+<body>
+    <header>
+        <h1>New Motion Blog</h1>
+        <h4> Double Click and 666!!!</h4>
+    </header>
+    <nav>
+        <ul>
+            <li><a href="">导航1</a></li>
+            <li><a href="">导航2</a></li>
+            <li><a href="">导航3</a></li>
+            <li><a href="">导航4</a></li>
+        </ul>
+    </nav>
+    <div id="main">
+        <div id="lside">
+            <article>
+                <h2><a href="#"><?php echo $art['title'];?></a></h2>
+                <div class="entry_header">
+                    <time><?php echo date('Y m d h:i:s',$art['pubtime'])?></time>
+                    by
+                    <a href="#"><?php echo $art['nick'];?></a>
+                    <a class="catlink" href="#"><?php echo $art['catname'];?></a>
+                    <a class="comment" href="#"><?php echo $art['comm'];?>条评论</a>
+                </div>
+                <div class="entry_content">
+                    <?php echo $art['content'];?>
+                </div>
+            </article>
+            <div id="comments">
+                <?php if(empty($commlist)) {?>
+                <?php echo '这里空空如也'.'</div>';}else{?>
+                    <ol>
+                        <?php foreach($commlist as $comm) {?>
+                        <li>
+                            <img src="https://secure.gravatar.com/avatar/582b66ad5ae1b69c7601a990cb9a661a?s=50&d=identicon&r=pg" alt="头像">
+                            <cite><a href="#"><?php echo $comm['nick'];?></a></cite> <br>
+                            <time><?php echo date('Y年m月d日h:i:s',$comm['pubtime'])?></time>
+                            <ip>来自于:<?php echo long2ip($comm['ip']);?></ip>
+                        </li>
+                        <li id="commcontent">
+                            <?php echo $comm['content'];?>
+                        </li>
+                        <?php }?>
+                    </ol>
+                </div>
+            <?php }?>
+            <div id="respond" class="comment-respond">
+                <h3>Leave a Comment</h3>
+                <?php if(isset($result) && ($$result == false)) {?>
+                <p style="color:red;">留言失败，请重试...</p>
+                <?php }?>
+                <form action="#" method="post">
+                    <p>
+                    <input placeholder="your name" name="nick" type="text" value="" size="30">
+                    </p>
+                    <p>
+                    <input placeholder="Email" name="email" type="text" value="" size="30">
+                    </p>
+                    <p>
+                    <textarea name="content" cols="45" rows="8" aria-required="true"></textarea>
+                    <p>
+                    <input type="submit" value="Post Comment">
+                </p>
+                </form>
+            </div>
+        </div>
+        <div id="rside">
+            <aside>
+                <form action="">
+                    <input type="text" name="search" placeholder="Search...">
+                </form>
+            </aside>
+            <aside>
+                <h4>栏目列表</h4>
+                <ul>
+                    <?php foreach($catlist as $c) {?>
+                    <li><a href="<?php echo '?cat_id='.$c['cat_id'] ?>"><?php echo $c['catname'] ?></a><?php echo '('.$c['num'].')'; ?></li>
+                    <?php }?>
+                </ul>
+            </aside>
+            <aside>
+                <h4>测试标题</h4>
+                <ul>
+                    <li><a href="">文章标题1</a></li>
+                    <li><a href="">文章标题2</a></li>
+                    <li><a href="">文章标题3</a></li>
+                    <li><a href="">文章标题4</a></li>
+                </ul>
+            </aside>
+
+            <!--<aside>-->
+                <!--<h4>测试标题</h4>-->
+                <!--<ul>-->
+                    <!--<li><a href="">文章标题1</a></li>-->
+                    <!--<li><a href="">文章标题2</a></li>-->
+                    <!--<li><a href="">文章标题3</a></li>-->
+                    <!--<li><a href="">文章标题4</a></li>-->
+                <!--</ul>-->
+            <!--</aside>-->
+        </div>
+    </div>
+    <footer>
+        Copyright &copy; 2015 · GeneratePress · WordPress
+    </footer>
+</body>
+</html>

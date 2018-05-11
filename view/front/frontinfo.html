@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>project blog</title>
+    <link rel="stylesheet" href="./css/reset.css">
+    <link rel="stylesheet" href="./css/index.css">
+</head>
+<body>
+<header>
+    <h1>new motion Blog</h1>
+    <h4>666</h4>
+</header>
+<nav>
+    <ul>
+        <li><a href="">导航1</a></li>
+        <li><a href="">导航2</a></li>
+        <li><a href="">导航3</a></li>
+        <li><a href="">导航4</a></li>
+    </ul>
+</nav>
+<div id="main">
+    <div id="lside">
+        <?php if($result == 'succf') {?>
+        <div class="succ"><?php echo $message;?></div><?php } else if($result == 'errorf') {?>
+        <div class="fail"><?php echo $message;?></div><?php }?>
+    </div>
+    <div id="rside">
+        <aside>
+            <form action="">
+                <input type="text" name="search" placeholder="Search...">
+            </form>
+        </aside>
+        <!--<aside>-->
+            <!--&lt;!&ndash;<h4>栏目列表</h4>&ndash;&gt;-->
+            <!--&lt;!&ndash;<ul>&ndash;&gt;-->
+                <!--&lt;!&ndash;<?php foreach($catlist as $c) {?>&ndash;&gt;-->
+                <!--&lt;!&ndash;<li><a href="<?php echo '?cat_id='.$c['cat_id'] ?>"><?php echo $c['catname'] ?></a><?php echo '('.$c['num'].')'; ?></li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<?php }?>&ndash;&gt;-->
+            <!--&lt;!&ndash;</ul>&ndash;&gt;-->
+        <!--</aside>-->
+        <!--<aside>-->
+            <!--<h4>测试标题</h4>-->
+            <!--<ul>-->
+                <!--<li><a href="">文章标题1</a></li>-->
+                <!--<li><a href="">文章标题2</a></li>-->
+                <!--<li><a href="">文章标题3</a></li>-->
+                <!--<li><a href="">文章标题4</a></li>-->
+            <!--</ul>-->
+        <!--</aside>-->
+
+    </div>
+</div>
+<footer>
+    Copyright &copy; 2015 · GeneratePress · WordPress
+</footer>
+</body>
+</html>
