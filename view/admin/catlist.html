@@ -54,6 +54,16 @@
                 </tr>
                 <?php }?>
             </table>
+            <div id="pagebar">
+                Pages:&nbsp;&nbsp;
+                <!--<?php print_r($page)?>-->
+                <?php foreach($page as $k=>$v) {?>
+                <?php if($k == $curr) {?>
+                <?php echo $k;}else {?>
+                <a href="catlist.php?<?php echo$v;?>"><?php echo $k;?></a>
+                <?php }?>
+                <?php }?>
+            </div>
         </div>
     </div>
     <footer>

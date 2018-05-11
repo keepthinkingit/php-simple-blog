@@ -8,23 +8,23 @@
 
 require('./lib/init.php');
 
-$q = "select art_id,title,pubtime,comm,catname from art left join cat on art.cat_id=cat.cat_id";
-$artlist = mGetAll($q);
+//判断地址栏是否传入cat_id
+if(isset($_GET['cat_id'])){
+    $where = " and art.cat_id=$_GET[cat_id]";
+}else{
+    $where = '';
+}
 
+//分页代码
+$sql = "select count(*) from art where 1" . $where ;//获取文章总数
+$all = mGetOne($sql);//文章总数
+$curr = isset($_GET['page']) ? $_GET['page'] :1;   //当前页码
+$num = 10;        //每页显示页面数量
+$page = getPage($all, $curr, $num);
 
+$sql = "select art_id,title,pubtime,comm,catname from art inner join cat on art.cat_id=cat.cat_id where 1 " . $where . "order by art_id desc limit " . ($curr-1)*$num . ',' . $num;
+$artlist = mGetAll($sql);
 
-//$q1 = "select * from cat ";
-//$result1 = mQuery($q);
-//$catlist = array();
-
-
-//while($row = mysqli_fetch_assoc($result) ){
-//    $artlist[] = $row;
-//}
-//while($row = mysqli_fetch_assoc($result1) ){
-//    $catlist[] = $row;
-//}
-//var_dump($catlist);
-//print_r($artlist);
+// print_r($artlist);
 
 require(ROOT .'/view/admin/artlist.html');

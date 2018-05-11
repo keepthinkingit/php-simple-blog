@@ -60,13 +60,14 @@
 
             </table>
             <div id="pagebar">
-                Pages:&nbsp;
-                <a href="#">1</a>
-                <a href="#">2</a>
-                <a href="#">3</a>
-                4
-                <a href="#">5</a>
-                <a href="#">6</a>
+                Pages:&nbsp;&nbsp;
+                <!--<?php print_r($page)?>-->
+                <?php foreach($page as $k=>$v) {?>
+                <?php if($k == $curr) {?>
+                <?php echo $k;}else {?>
+                <a href="artlist.php?<?php echo$v;?>"><?php echo $k;?></a>
+                <?php }?>
+                <?php }?>
             </div>
         </div>
     </div>
