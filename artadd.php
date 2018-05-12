@@ -34,10 +34,12 @@ if(empty($_POST)){
         error('内容不能为空');
     }
 
-    //判断是否有文件上传 且上传过程中没出错
+    //判断是否有文件/图片上传 且上传过程中没出错
     if(!empty($_FILES) && $_FILES['uploadpic']['error'] == 0){
-        $filename = createDir() .'/' . date('Ymd') . strRand(3) .  getExt($_FILES['uploadpic']['name']);
-        move_uploaded_file($_FILES['uploadpic']['tmp_name'], ROOT . $filename);
+        $filename = createDir() . '/' . date('Ymd') . strRand(3) .  getExt($_FILES['uploadpic']['name']);
+        if (move_uploaded_file($_FILES['uploadpic']['tmp_name'], ROOT . $filename)) {
+            $art['pic'] = $filename;
+        };
     }
 
     //收集tag

@@ -31,7 +31,7 @@ $commlist = mGetAll($sql);
 //var_dump($commlist);
 
 //查询文章内容
-$sql = "select art_id,title,content,pubtime,catname,nick,comm from art inner join cat on art.cat_id=cat.cat_id where art_id=$art_id";
+$sql = "select art_id,title,content,pic,pubtime,catname,nick,comm from art inner join cat on art.cat_id=cat.cat_id where art_id=$art_id";
 $art = mGetRow($sql);
 
 //判断是否有新留言
