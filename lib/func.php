@@ -88,10 +88,61 @@ function getPage($all,$curr,$num)
 
 // print_r(getPage(100,5,5));
 
+/*
+ * 生成随机字符串
+ * @param int $length 生成随机字符串的长度
+ * @param string $char 组成随机字符串的字符串
+ * @return string $string 生成的随机字符串
+ */
+function strRand($length = 32, $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+    if(!is_int($length) || $length <= 0) {
+        return false;
+    }
 
+    $string = '';
+    for($i = $length; $i > 0; $i=$i-1) {
+        $string .= $char[mt_rand(0, strlen($char) - 1)];
+    }
+    return $string;
+}
+//生成随机字符串第二种思路
+// function strRand($length = 32, $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+//     if(!is_int($length) || $length <= 0) {
+//         return false;
+//     }
+//
+//     $string = str_shuffle($char);
+//     $string .= substr($char, 0, $length);
+//     return $string;
+// }
 
+//生成唯一字符串,使用md5
+// $uniqid = md5(uniqid(microtime(true),true));
+// echo $uniqid;
 
+/**
+ * 创建目录,从网站根目录存取文件  ROOT .'/upload/2018/01/01/2018010100.jpg'
+ *
+ */
+function createDir(){
+    $path = '/upload/'.date('Y/m/d');
+    $fpath = ROOT .$path;
+    if(is_dir($fpath) || mkdir($fpath , 0777, true)){
+        return $path;
+    }else {
+        return false;
+    }
+}
 
+/**
+ * 获取文件后缀
+ * @param string $filename
+ * @return string $ext
+ */
+function getExt($filename){
+    $ext = strrchr($filename, '.');
+    return $ext;
+}
 
 
 ?>

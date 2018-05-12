@@ -28,10 +28,16 @@ if(empty($_POST)){
         error('栏目不合法，请重新输入');
     }
 
-    //检测内容是否为空
+    //检测内容是否为空z
     $art['content'] = trim($_POST['content']);
     if(empty($art['content'])){
         error('内容不能为空');
+    }
+
+    //判断是否有文件上传 且上传过程中没出错
+    if(!empty($_FILES) && $_FILES['uploadpic']['error'] == 0){
+        $filename = createDir() .'/' . date('Ymd') . strRand(3) .  getExt($_FILES['uploadpic']['name']);
+        move_uploaded_file($_FILES['uploadpic']['tmp_name'], ROOT . $filename);
     }
 
     //收集tag
