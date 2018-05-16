@@ -94,7 +94,7 @@ function getPage($all,$curr,$num)
  * @param string $char 组成随机字符串的字符串
  * @return string $string 生成的随机字符串
  */
-function strRand($length = 32, $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
+function strRand($length = 6, $char = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ') {
     if(!is_int($length) || $length <= 0) {
         return false;
     }
@@ -144,7 +144,66 @@ function getExt($filename){
     return $ext;
 }
 
+/**
+ * 生成缩略图
+ * @param string $oimg  /upload/2018/05/16/asdf.jpg
+ * @param   int     $ow     生成缩略图的宽
+ * @param   int     $oh     生成缩略图的高
+ * @return  string  生成缩略图的路径 /upload/2018/05/16/asdf.png
+ */
+function makeThum($oimg, $fw=200, $fh=200){
+    #缩略图存放路径名称
+    $oimgdir = dirname($oimg) . '/' . strRand() . '.png';
 
-?>
+    #获取原图和缩略图的绝对路径
+    $opath= ROOT. $oimg;    //原图绝对路径
+    $fpath = ROOT . $oimgdir;  //最终生成的小图路径
+
+    //创建小画布
+    $fpic = imagecreatetruecolor($fw, $fh);
+
+    //创建白色背景
+    $white = imagecolorallocate($fpic, 255, 255, 255);
+    imagefill($fpic, 0, 0, $white);
+
+    //获取原图信息
+    list($ow, $oh ,$btype) = getimagesize($opath);
+    //1 = GIF, 2= JPG , 3 = PNG,  4 = SWF, 5=PSD , 6 = BMP , 15 = WBMP
+    $map = array(
+        1=>'imagecreatefromgif',
+        2=>'imagecreatefromjpeg',
+        3=>'imagecreatefrompng',
+        15=>'imagecreatefromwbmp',
+    );
+    $opic = $map[$btype]($opath); //获取大图资源
+
+    //计算缩略图比例
+    $rate = min($fw/$ow, $fh/$oh);
+    $zw = $ow * $rate;
+    $zh = $oh * $rate;
+
+    imagecopyresampled($fpic, $opic ,($fw-$zw)/2 ,($fh-$zh)/2,0 ,0 ,$zw ,$zh ,$ow ,$oh);
+
+    imagepng($fpic, $fpath);    //保存缩略图
+
+    imagedestroy($fpic);
+    imagedestroy($opic);
+
+    return $oimgdir;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 

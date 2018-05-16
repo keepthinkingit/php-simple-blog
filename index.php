@@ -23,7 +23,7 @@ $page = getPage($all, $curr, $num);
 
 
 //查询所有文章
-$sql = "select art_id,content,title,pubtime,nick,art.cat_id,catname,comm from art inner join cat on art.cat_id=cat.cat_id where 1 ".$where . " order by art_id desc limit " . ($curr-1)*$num . ',' . $num;
+$sql = "select art_id,content,title,pubtime,thumb,nick,art.cat_id,catname,comm from art inner join cat on art.cat_id=cat.cat_id where 1 ".$where . " order by art_id desc limit " . ($curr-1)*$num . ',' . $num;
 $artlist = mGetAll($sql);
 
 //如果栏目页没有文章，提示此分类暂无文章

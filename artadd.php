@@ -39,6 +39,8 @@ if(empty($_POST)){
         $filename = createDir() . '/' . date('Ymd') . strRand(3) .  getExt($_FILES['uploadpic']['name']);
         if (move_uploaded_file($_FILES['uploadpic']['tmp_name'], ROOT . $filename)) {
             $art['pic'] = $filename;
+            // print_r(makeThum($filename));exit();
+            $art['thumb'] = makeThum($filename);
         };
     }
 
@@ -73,7 +75,7 @@ if(empty($_POST)){
                 //发布成功后,添加栏目文章数
                 $sql = "update cat set num=num+1 where cat_id=$art[cat_id]";
                 mQuery($sql);
-                succ("文章添加成功");
+                succ("文章发布成功");
             }else {
                 //tag添加失败,可以删除原文章或者取空,此处暂定为添加标签失败需要重新编辑文章
                 $sql = "delete from art where art_id=$art_id";

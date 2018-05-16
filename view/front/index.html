@@ -31,6 +31,9 @@
                     <a class="catlink" href="#"><?php echo $a['catname'];?></a>
                     <a class="comment" href="#"><?php echo $a['comm']."条评论";?></a>
                 </div>
+                <?php if($a['thumb']){?>
+                <img src="<?php echo $a['thumb']?>" alt="">
+                <?php }?>
                 <div class="entry_content">
                     <p><?php echo $a['content'];?>
                     </p>
