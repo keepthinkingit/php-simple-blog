@@ -7,6 +7,10 @@
  */
 require('./lib/init.php');
 
+if(!access()){
+    header("Location: login.php");
+}
+
 $art_id = $_GET['art_id'];
 
 //判断栏目ID是否为数字

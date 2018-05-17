@@ -7,13 +7,9 @@
 
 require('./lib/init.php');
 
-//create connect
-
-//check connection 
-//if (!$conn) {
-//	die("connection failed:" . mysqli_connect_error());
-//}
-
+if(!access()){
+    header("Location: login.php");
+}
 
 if (empty($_POST)) {
 	include(ROOT .'/view/admin/catadd.html');
@@ -25,16 +21,11 @@ if (empty($_POST)) {
     if (empty($cat['catname'])) {
         echo 'category name can not be empty or blank';
     }
-//    print_r($cat);
-//    echo '<br>';
-//    print_r($cat['catname']);
-//    print_r($cat[catname]);
 
     //check the catname existing
     $sql1 = "select count(*) from cat where catname='$cat[catname]'";
     $result1 = mQuery($sql1);
     if (mysqli_fetch_row($result1)[0] !=0) {
-//        echo 'category name already exists.';
         error('栏目名称已经存在！');
         exit();
     }
@@ -48,4 +39,3 @@ if (empty($_POST)) {
         succ('栏目插入成功！');
     }
 }
-    ?>

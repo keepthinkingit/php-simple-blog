@@ -7,6 +7,10 @@
  */
 require('./lib/init.php');
 
+if(!access()){
+    header("Location: login.php");
+}
+
 $sql = "select * from cat";
 $cats = mGetAll($sql);
 //print_r($cats);

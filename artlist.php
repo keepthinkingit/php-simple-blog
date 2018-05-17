@@ -8,6 +8,10 @@
 
 require('./lib/init.php');
 
+if(!access()){
+    header("Location: login.php");
+}
+
 //判断地址栏是否传入cat_id
 if(isset($_GET['cat_id'])){
     $where = " and art.cat_id=$_GET[cat_id]";

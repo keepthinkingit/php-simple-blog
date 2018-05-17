@@ -17,6 +17,10 @@
  */
 function mConn() {
     static $conn = null;
+    //check connection
+    // if (!$conn) {
+    //     die("connection failed:" . mysqli_connect_error());
+    // }
     if($conn === null){
         $cfg = require(ROOT .'/lib/config.php');
         $conn = mysqli_connect($cfg['host'], $cfg['user'], $cfg['pwd'], $cfg['db']);

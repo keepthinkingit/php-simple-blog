@@ -7,6 +7,10 @@
  */
 require('./lib/init.php');
 
+if(!access()){
+    header("Location: login.php");
+}
+
 $cat_id = $_GET['cat_id'];
 //echo $cat_id;
 

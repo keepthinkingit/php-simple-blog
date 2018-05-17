@@ -1,23 +1,43 @@
 <?php 
 
 /**
-* 后台管理成功的提示信息
-*/
+ * 后台管理成功的提示信息
+ */
 
 function succ($message) {
-	$result = 'succ';
-	require(ROOT . '/view/admin/info.html');
-	exit();
+    $result = 'succ';
+    require(ROOT . '/view/admin/info.html');
+    exit();
 }
 
 /**
-* 后台管理失败返回的报错信息
-*/
+ * 后台管理失败返回的报错信息
+ */
 
 function error($message) {
-	$result = 'fail';
-	require(ROOT . '/view/admin/info.html');
-	exit();
+    $result = 'fail';
+    require(ROOT . '/view/admin/info.html');
+    exit();
+}
+
+// /**
+//  * 登录页面成功的提示信息
+//  */
+//
+// function succl($message) {
+//     $result = 'succ';
+//     require(ROOT . '/view/admin/info.html');
+//     exit();
+// }
+
+/**
+ * 后登录页面失败返回的报错信息
+ */
+
+function errorl($message) {
+    $result = 'errorl';
+    require(ROOT . '/view/front/frontinfo.html');
+    exit();
 }
 
 /**
@@ -193,8 +213,16 @@ function makeThum($oimg, $fw=200, $fh=200){
 }
 
 
+/**
+ * 检测用户是否登录
+ * @param
+ * @return
+ *
+ */
+function access(){
+    return isset($_COOKIE['name']);
 
-
+}
 
 
 

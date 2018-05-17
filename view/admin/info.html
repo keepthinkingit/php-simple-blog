@@ -35,9 +35,10 @@
             </aside>
         </div>
         <div id="rside">
-            <?php if($result == 'succ') {?>
-            <div class="succ"><?php echo $message;?></div><?php } else if($result == 'fail') {?>
-            <div class="error"><?php echo $message;?></div><?php }?>
+            <?php if($result == 'succ') {?><div class="succ"><?php echo $message;?></div>
+            <?php } else if($result == 'fail') {?><div class="error"><?php echo $message;?></div>
+
+            <?php }?>
         </div>
     </div>
     <footer>

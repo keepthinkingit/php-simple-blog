@@ -21,9 +21,10 @@
 </nav>
 <div id="main">
     <div id="lside">
-        <?php if($result == 'succf') {?>
-        <div class="succ"><?php echo $message;?></div><?php } else if($result == 'errorf') {?>
-        <div class="fail"><?php echo $message;?></div><?php }?>
+        <?php if($result == 'succf') {?><div class="succ"><?php echo $message;?></div>
+        <?php } else if($result == 'errorf') {?><div class="fail"><?php echo $message;?></div>
+        <?php } else if($result == 'errorl') {?><div class="fail"><?php echo $message;?></div>
+        <?php }?>
     </div>
     <div id="rside">
         <aside>
