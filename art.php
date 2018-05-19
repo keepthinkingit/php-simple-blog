@@ -9,10 +9,6 @@ require('./lib/init.php');
 
 $art_id=$_GET['art_id'];
 
-//判断art_id是否合法
-//if(!is_numeric($art_id)){
-//    header('Location: index.php');
-//}
 
 //如果文章不存在，跳转到首页
 $sql = "select * from art where art_id=$art_id";
@@ -31,8 +27,12 @@ $commlist = mGetAll($sql);
 //var_dump($commlist);
 
 //查询文章内容
-$sql = "select art_id,title,content,pic,pubtime,catname,nick,comm from art inner join cat on art.cat_id=cat.cat_id where art_id=$art_id";
+$sql = "select art_id,title,content,pic,pubtime,pageview,catname,nick,comm from art inner join cat on art.cat_id=cat.cat_id where art_id=$art_id";
 $art = mGetRow($sql);
+
+//增加pageview数目
+$sql = "update art set pageview=pageview+1 where art_id=" . $art_id ;
+mQuery($sql);
 
 //判断是否有新留言
 if(!empty($_POST)){

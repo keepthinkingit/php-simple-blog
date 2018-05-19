@@ -8,6 +8,7 @@
 
 // setcookie('name',null,1,'','blog.com');
 setcookie('name','',1);
+setcookie('scode', null, 3);
 header("Location: login.php");
 
 //you can use setcookie's value:null or '' to delete cookie.

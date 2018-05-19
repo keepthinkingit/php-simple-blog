@@ -22,15 +22,19 @@ if (empty($_POST)){
         errorl("密码不能为空!");
     }
 
-    $sql = "select password from user where name='$user[name]'";
-    // var_dump($sql);exit();
-    // $rpw = mGetRow($sql);
-    // var_dump($rpw);exit();
-    if(mGetRow($sql) && mGetRow($sql)['password'] == $user['pw']){
-        setcookie('name', $user['name'],strtotime( '+30 days' ));
-        succ("登录成功!");
-    }else{
+    $sql = "select password,salt from user where name='$user[name]'";
+    $result = mGetRow($sql);
+    if(!$result){
         errorl("登录失败,请核对用户名和密码!");
+    }else{
+        if(md5($user['pw'] . $result['salt']) ===  $result['password']){
+            setcookie('name', $user['name'],strtotime( '+30 days' ));
+            setcookie('scode', addSalt($user['name']));
+            // succ("登录成功!");
+            header("Location:artlist.php");
+        }else{
+            errorl("密码错误!");
+        }
     }
 }
 

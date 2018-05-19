@@ -25,10 +25,10 @@ INSERT INTO `cat` (`cat_id`, `catname`, `num`) VALUES
 
 CREATE TABLE IF NOT EXISTS `art` (
   `art_id` int(10) unsigned NOT NULL AUTO_INCREMENT,
-  `cat_id` smallint(5) unsigned DEFAULT '0',
-  `user_id` int(10) unsigned DEFAULT '0',
-  `nick` varchar(45) DEFAULT '',
-  `title` varchar(45) DEFAULT '',
+  `cat_id` smallint(5) unsigned NOT NULL DEFAULT '0',
+  `user_id` int(10) unsigned NOT NULL DEFAULT '0',
+  `nick` varchar(45) NOT NULL DEFAULT 'default',
+  `title` varchar(45) NOT NULL DEFAULT '',
   `content` text NOT NULL,
   `pubtime` int(10) unsigned NOT NULL DEFAULT '0',
   `lastup` int(10) unsigned DEFAULT '0',

@@ -146,5 +146,18 @@ function getLastId(){
     return mysqli_insert_id(mConn());
 }
 
-
-?>
+/**
+ * 使用反斜线 转义字符串
+ * @param   array   待转义的数组
+ * @return  array   转移后数组
+ */
+function _addslashes($arr){
+    foreach($arr as $k=>$v){
+        if(is_string($v)){
+            $arr[$k] = addslashes($v);
+        }else if(is_array($v)){
+            $arr[$k] = _addslashes($v);
+        }
+    }
+    return $arr;
+}

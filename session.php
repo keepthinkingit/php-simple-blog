@@ -12,3 +12,6 @@ session_start();
 $_SESSION['name'] = 'nanana';
 $_SESSION['age'] = '18';
 
+echo $_SESSION['name'];
+session_destroy();
+

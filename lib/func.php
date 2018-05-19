@@ -220,13 +220,22 @@ function makeThum($oimg, $fw=200, $fh=200){
  *
  */
 function access(){
-    return isset($_COOKIE['name']);
-
+    if(!isset($_COOKIE['name']) || !isset($_COOKIE['scode'])) {
+        return false;
+    }
+    return $_COOKIE['scode'] === addSalt($_COOKIE['name']);
 }
 
 
-
-
+/**
+ * 加密 用户名
+ * @param   string $name 用户输入时的用户名
+ * @return  string md5(用户名+salt)=>md5返回值
+ */
+function addSalt($name){
+    $salt = require(ROOT .'./lib/config.php');
+    return md5($name . '|' . $salt['salt']);
+}
 
 
 
