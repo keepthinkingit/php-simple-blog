@@ -47,7 +47,7 @@ if(!empty($_POST)){
     if(empty($_POST['content'])){
         errorf("留言内容不能为空～");
     }
-    $newcomm['content']=trim($_POST['content']);
+    $newcomm['content']=htmlspecialchars(trim($_POST['content']));
     $newcomm['art_id']=$art_id;
     $newcomm['pubtime']=time();
     $newcomm['ip'] = sprintf('%u', ip2long(getRealIp()));
